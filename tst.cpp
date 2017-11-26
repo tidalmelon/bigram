@@ -8,6 +8,9 @@
 #include<fstream>
 #include<string>
 #include<iostream>
+#include<vector>
+#include<boost/algorithm/string/classification.hpp>
+#include<boost/algorithm/string/split.hpp>
 
 #include "tst.h"
 #include "util.h"
@@ -29,8 +32,17 @@ void TernarySearchTrie::loadBaseDict(char fname[]) {
     std::string line;
     while (getline(in, line)) {
         std::string outline;
-        int res = decode(line, outline, encoding);
-        std::cout << outline << std::endl;
+        decode(line, outline, encoding);
+
+
+        std::vector<std::string> dest;
+        boost::split(dest, outline, boost::is_any_of(":"), boost::token_compress_on);
+        std::vector<std::string>::iterator it;
+        for (it=dest.begin(); it!=dest.end(); ++it) {
+            std::cout << *it << std::endl;
+        }
+        std::cout << "------------------: " << dest.size() <<  std::endl;
+
     }
 }
 
