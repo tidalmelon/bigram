@@ -34,7 +34,6 @@ void TernarySearchTrie::loadBaseDict(char fname[]) {
         std::string outline;
         decode(line, outline, encoding);
 
-
         std::vector<std::string> dest;
         boost::split(dest, outline, boost::is_any_of(":"), boost::token_compress_on);
         std::vector<std::string>::iterator it;
