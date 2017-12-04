@@ -1,3 +1,4 @@
+//有内存泄漏…………
 #ifndef _UTIL_H
 #define _UTIL_H
 

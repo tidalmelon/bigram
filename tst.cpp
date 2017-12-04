@@ -27,6 +27,7 @@ TernarySearchTrie::TernarySearchTrie() {
 }
 
 void TernarySearchTrie::loadBaseDict(char fname[]) {
+    // 词典结构： 词 词性 频率 (是以某个词的某个词性为粒度, 即一个词会出现在多行，但词性不同)
     char encoding[] = "GBK";
     std::ifstream in(fname);
     std::string line;
@@ -36,11 +37,14 @@ void TernarySearchTrie::loadBaseDict(char fname[]) {
 
         std::vector<std::string> dest;
         boost::split(dest, outline, boost::is_any_of(":"), boost::token_compress_on);
-        std::vector<std::string>::iterator it;
-        for (it=dest.begin(); it!=dest.end(); ++it) {
-            std::cout << *it << std::endl;
-        }
-        std::cout << "------------------: " << dest.size() <<  std::endl;
+        //std::vector<std::string>::iterator it;
+        //for (it=dest.begin(); it!=dest.end(); ++it) {
+        //    std::cout << *it << std::endl;
+        //}
+        //std::cout << "------------------: " << dest.size() <<  std::endl;
+        std::string word = dest.at(0);
+        std::string pos = dest[1];
+        std::string num = dest[2];
 
     }
 }

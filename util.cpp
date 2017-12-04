@@ -1,4 +1,3 @@
-#include<fstream> 
 #include<string>
 #include<iostream>
 #include<iconv.h>
@@ -7,15 +6,15 @@
 int code_convert(char *from_charset, char *to_charset, char *inbuf, size_t inlen, char *outbuf, size_t outlen) {
     iconv_t cd;
     int rc;
-    char **pin = &inbuf;
-    char **pout = &outbuf;
+    char *pin = inbuf;
+    char *pout = outbuf;
 
     cd = iconv_open(to_charset, from_charset);
     if (cd == 0) {
         return -1;
     }
     memset(outbuf, 0, outlen);
-    if (iconv(cd, pin, &inlen, pout, &outlen) == -1) {
+    if (iconv(cd, &pin, &inlen, &pout, &outlen) == -1) {
         return -1;
     }
     iconv_close(cd);
@@ -40,18 +39,3 @@ int decode(std::string& line, std::string& outline, char encoding[]) {
 }
 
 
-//int main() {
-//    char fname[] = "./dic/coreDict.txt";
-//    std::ifstream in(fname);
-//    std::string line;
-//    char encoding[] = "GBK";
-//
-//    if (in) {
-//        while (getline(in, line)) {
-//            std::string outline;
-//            int res = decode(line, outline, encoding);
-//            std::cout << outline << std::endl;
-//        }
-//    }
-//    return 0;
-//}

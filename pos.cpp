@@ -116,4 +116,8 @@ std::string Pos::getName(int pos) {
     return names[pos];
 }
 
+int Pos::getValue(std::string key) {
+    
+}
+
 

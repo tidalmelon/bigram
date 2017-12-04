@@ -1,4 +1,5 @@
 #include<iostream>
+#include<sstream>
 #include "bimap.h"
 
 
@@ -116,6 +117,18 @@ void BiMap::print() {
         std::cout << this->freqs[i] << " ";
     }
     std::cout << std::endl;
+}
+
+std::string BiMap::tostring() {
+    std::stringstream ss;
+    ss << "BigramMap@";
+    for (size_t i=0; i<this->len; i++) {
+        ss << "[" << prevIds[i] << ":" << freqs[i] << "]"; 
+    }
+    if (this->len <= 0) {
+        ss << "empty";
+    }
+    return ss.str();
 }
 
 
