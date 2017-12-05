@@ -21,7 +21,7 @@ int main() {
     
     TernarySearchTrie t;
 
-    char fname[] = "../dic/coreDict.txt";
+    char fname[] = "../dic/coreDict_utf8.txt";
     t.loadBaseDict(fname);
 
 

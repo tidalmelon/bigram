@@ -117,7 +117,12 @@ std::string Pos::getName(int pos) {
 }
 
 int Pos::getValue(std::string key) {
-    
+    std::map<std::string, int>::iterator it;
+    it = values.find(key);
+    if (it!= values.end()) {
+        return it->second;
+    }
+    return -1;
 }
 
 

@@ -189,6 +189,10 @@ int main() {
         std::cout << "key:" << iter->first << " value: " << iter->second << std::endl;
     }
 
+    std::cout << "-----------find by key----------" << std::endl;
+
+    std::cout << Pos::getValue("vn") << std::endl;
+
 
     return 0;
 }

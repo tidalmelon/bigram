@@ -8,7 +8,7 @@
 class Pos {
 public:
     std::string getName(int pos);
-    int getValue(std::string key);
+    static int getValue(std::string key);
 	static int start;
 	static int end;
 	static int a;
