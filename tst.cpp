@@ -11,6 +11,7 @@
 #include<vector>
 #include<boost/algorithm/string/classification.hpp>
 #include<boost/algorithm/string/split.hpp>
+#include<boost/lexical_cast.hpp>
 
 #include "tst.h"
 #include "pos.h"
@@ -46,11 +47,13 @@ void TernarySearchTrie::loadBaseDict(char fname[]) {
         //std::cout << "------------------: " << dest.size() <<  std::endl;
         std::string word = dest.at(0);
         std::string pos = dest[1];
-        std::string num = dest[2];
+        std::string num_ = dest[2];
         //std::cout << word << " pos:" << pos << " num:" << num << std::endl;
         int value = Pos::getValue(pos);
         //std::cout << pos << ":" << value << std::endl;
 
+        int num = boost::lexical_cast<int>(num_);
+        
 
     }
 }
