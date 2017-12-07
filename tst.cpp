@@ -51,9 +51,9 @@ TSTNode::~TSTNode() {
 TernarySearchTrie::TernarySearchTrie() {
     rootNode = NULL;
 
-    n = 0;
-    id = 0;
-    nodeId = 0;
+    n = 0; //词典中词的总频率
+    id = 0; //存储每个词的ID
+    nodeId = 0; //节点编号
 
 }
 
@@ -101,18 +101,69 @@ void TernarySearchTrie::loadBaseDict(char fname[]) {
 
         TSTNode *currentNode = getOrCreateNode(word);
 
+        if (freq == 0) {
+            freq = 1;
+        }
         if (currentNode->data == NULL) {
-            if (freq == 0) {
-                freq = 1;
-            }
             WordType *data = new WordType(word);
             data->biEntry->id = this->id;
+            // 存储每个词的ID
             this->id += 1;
+            /*统计同一个词的各种词性及对应频率 */
             data->pos->put(key, freq);
             currentNode->data = data;
         } else {
+            /*统计同一个词的各种词性及对应频率 */
             currentNode->data->pos->put(key, freq);
         }
+        this->n += freq; //统计词典中总词频
+    }
+}
+
+void TernarySearchTrie::loadBigramDict(char fname[]) {
+    //以@阻止:1 词典格式
+    std::ifstream in(fname);
+    std::string line;
+    while (getline(in, line)) {
+        
+        std::string::size_type idx = line.find("@");
+        if (idx == std::string::npos) {
+            continue;
+        }
+        idx = line.find(":");
+        if (idx == std::string::npos) {
+            continue;
+        }
+
+        std::vector<std::string> dest;
+        boost::split(dest, line, boost::is_any_of("@:"), boost::token_compress_on);
+        //std::vector<std::string>::iterator it;
+        //for (it=dest.begin(); it!=dest.end(); ++it) {
+        //    std::cout << *it << std::endl;
+        //}
+        //std::cout << "------------------: " << dest.size() <<  std::endl;
+
+        std::string prefix_word_ = dest.at(0);
+        std::string suffix_word_ = dest.at(1);
+        std::string freq_ = dest.at(2);
+        
+        std::wstring prefix_word = s2ws(prefix_word_);
+        std::wstring suffix_word = s2ws(suffix_word_);
+        int freq = boost::lexical_cast<int>(freq_); 
+        
+        TSTNode *suffixNode = getNode(suffix_word);
+        if (suffixNode == NULL || suffixNode->data == NULL) {
+            continue;
+        }
+
+        TSTNode *prefixNode = getNode(prefix_word);
+        if (prefixNode == NULL || prefixNode->data == NULL) {
+            continue;
+        }
+
+        int id = prefixNode->data->biEntry->id; /*前缀单词的Id */
+        
+        suffixNode->data->biEntry->put(id, freq);
     }
 }
 
@@ -121,6 +172,7 @@ TSTNode* TernarySearchTrie::getOrCreateNode(std::wstring word) {
     int charIndex = word.size() - 1;
     if (rootNode == NULL) {
         rootNode = new TSTNode(word.at(0));
+        this->nodeId += 1;
     }
 
     TSTNode *currentNode = rootNode;
@@ -134,16 +186,19 @@ TSTNode* TernarySearchTrie::getOrCreateNode(std::wstring word) {
             charIndex --;
             if (currentNode->eqNode == NULL) {
                 currentNode->eqNode = new TSTNode(word.at(charIndex));
+                this->nodeId += 1;
             }
             currentNode = currentNode->eqNode;
         } else if (compa < 0) {
             if (currentNode->loNode == NULL) {
                 currentNode->loNode = new TSTNode(word.at(charIndex));
+                this->nodeId += 1;
             }
             currentNode = currentNode->loNode;
         } else {
             if (currentNode->hiNode == NULL) {
                 currentNode->hiNode = new TSTNode(word.at(charIndex));
+                this->nodeId += 1;
             }
             currentNode = currentNode->hiNode;
         }

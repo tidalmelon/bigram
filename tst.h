@@ -33,6 +33,7 @@ class TernarySearchTrie {
         ~TernarySearchTrie();
 
         void loadBaseDict(char fname[]);
+        void loadBigramDict(char fname[]);
         TSTNode* getOrCreateNode(std::wstring word);
         TSTNode* getNode(std::wstring word);
     private:

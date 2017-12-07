@@ -6,8 +6,9 @@
 BiMap::BiMap(int len) {
     prevIds = new int[len];
     freqs = new int[len];
-    this->len = len;
     this->id = 0;
+
+    this->len = len;
 }
 
 BiMap::~BiMap() {
@@ -22,6 +23,7 @@ BiMap::~BiMap() {
 }
 
 void BiMap::put(int prevId, int freq) {
+
     if (len == 0) {
         delete [] prevIds;
         delete [] freqs;
@@ -37,7 +39,6 @@ void BiMap::put(int prevId, int freq) {
     }
 
     size_t idx = index_bin(prevIds, prevId, 0, len-1);
-    //std::cout << "idx: " << idx << std::endl;
     len += 1;
     int *prevIds_ = new int[len];
     int *freqs_ = new int[len];
@@ -71,45 +72,21 @@ int BiMap::getfreq(int prevId) {
     return -1;
 }
 
-size_t BiMap::index(int arr[], int val, size_t left, size_t right) {
-    if (left > right) {
-        return -1;
-    }
-
-    size_t mid = left + ((right - left) >> 1);
-    if (arr[mid] == val) {
-        return mid;
-    } else if (arr[mid] < val) {
-        return index(arr, val, mid+1, right);
-    } else {
-        return index(arr, val, left, mid-1);
-    }
-}
-
-size_t BiMap::index_bin(int arr[], int val, size_t left, size_t right) {
-    if (left == right && left > 0) {
-        //std::cout << "left: " << left << std::endl;
-        if (arr[left] < val) {
-            return left + 1;
+int BiMap::index(int prevId) {
+    int low = 0;
+    int high = this->len - 1;
+    while (low <= high) {
+        int mid = low + ((high - low) >> 1);
+        int midval = prevIds[mid];
+        if (midval < prevId) {
+            low = mid + 1;
+        } else if (midval > prevId) {
+            high = mid - 1;
         } else {
-            return left;
-        }
-    } else if (left == right && left == 0) {
-        if (arr[left] < val) {
-            return 1;
-        } else {
-            return 0;
+            return mid;
         }
     }
-
-    size_t mid = left + ((right - left) >> 1);
-    if (arr[mid] == val) {
-        return mid;
-    } else if (arr[mid] < val) {
-        return index_bin(arr, val, mid+1, right);
-    } else {
-        return index_bin(arr, val, left, mid-1);
-    }
+    return -1;
 }
 
 void BiMap::print() {

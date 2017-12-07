@@ -20,12 +20,12 @@ public:
     int id; //词本身的id
 
 private:
-    size_t index(int arr[], int val, size_t left, size_t right);
-    size_t index_bin(int arr[], int val, size_t left, size_t right);
+    int index(int prevId);
 
 private:
     int *prevIds;
     int *freqs;
+
     size_t len;
 
 };
