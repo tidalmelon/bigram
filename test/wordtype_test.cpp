@@ -5,7 +5,7 @@
 
 int main() {
 
-    std::string word = "席尔瓦";
+    std::wstring word = L"席尔瓦";
     WordType wt(word);
 
     wt.pos->put(1, 2);
@@ -23,9 +23,11 @@ int main() {
     wt.biEntry->put(13, 130);
     wt.biEntry->put(12, 120);
 
-    std::string line = wt.tostring();
+    std::wstring line = wt.tostring();
 
-    std::cout << line << std::endl;
+    
+    setlocale(LC_CTYPE, "en_US.UTF-8");
+    std::wcout << line << std::endl;
 
     return 0;
 }

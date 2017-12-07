@@ -7,8 +7,8 @@
 
 class Pos {
 public:
-    std::string getName(int pos);
-    static int getValue(std::string key);
+    std::wstring getName(int pos);
+    static int getValue(std::wstring key);
 	static int start;
 	static int end;
 	static int a;
@@ -59,8 +59,8 @@ public:
 	static int z;
 	static int unknow;
 
-    static std::string names[];
-    static std::map<std::string, int> values;
+    static std::wstring names[];
+    static std::map<std::wstring, int> values;
 };
 
 #endif

@@ -15,17 +15,53 @@
 
 #include "tst.h"
 #include "pos.h"
+#include "wordtype.h"
 //#include "util.h"
 
-TSTNode::TSTNode(char key) {
+TSTNode::TSTNode(wchar_t key) {
     splitChar = key;
     loNode = NULL;
     eqNode = NULL;
     hiNode = NULL;
+    data = NULL;
+}
+
+TSTNode::~TSTNode() {
+    if (loNode != NULL) {
+        //std::wcout << "clean:" << splitChar << std::endl;
+        delete loNode;
+        loNode = NULL;
+    }
+    if (eqNode != NULL) {
+        //std::wcout << "clean:" << splitChar << std::endl;
+        delete eqNode;
+        eqNode = NULL;
+    }
+    if (hiNode != NULL) {
+        //std::wcout << "clean:" << splitChar << std::endl;
+        delete hiNode;
+        hiNode = NULL;
+    }
+    if (data != NULL) {
+        delete data;
+        data = NULL;
+    }
 }
 
 TernarySearchTrie::TernarySearchTrie() {
     rootNode = NULL;
+
+    n = 0;
+    id = 0;
+    nodeId = 0;
+
+}
+
+TernarySearchTrie::~TernarySearchTrie() {
+    if (rootNode != NULL) {
+        delete rootNode;
+        rootNode = NULL;
+    }
 }
 
 void TernarySearchTrie::loadBaseDict(char fname[]) {
@@ -33,7 +69,6 @@ void TernarySearchTrie::loadBaseDict(char fname[]) {
     //char encoding[] = "gb18030";
     std::ifstream in(fname);
     std::string line;
-    int num = 0;
     while (getline(in, line)) {
         //std::string outline;
         //decode(line, outline, encoding);
@@ -45,20 +80,43 @@ void TernarySearchTrie::loadBaseDict(char fname[]) {
         //    std::cout << *it << std::endl;
         //}
         //std::cout << "------------------: " << dest.size() <<  std::endl;
-        std::string word = dest.at(0);
-        std::string pos = dest[1];
-        std::string num_ = dest[2];
+        std::string word_ = dest.at(0);
+        std::string pos_ = dest[1];
+        std::string freq_ = dest[2];
         //std::cout << word << " pos:" << pos << " num:" << num << std::endl;
-        int value = Pos::getValue(pos);
-        //std::cout << pos << ":" << value << std::endl;
+        //
+        std::wstring pos = s2ws(pos_);
+        int key = Pos::getValue(pos);
 
-        int num = boost::lexical_cast<int>(num_);
-        
+        //std::cout << pos << ":" << key << std::endl;
 
+        std::wstring word = s2ws(word_);
+        //std::wcout << word << std::endl;
+
+        int freq = boost::lexical_cast<int>(freq_);
+
+        if (this->rootNode == NULL) {
+            this->rootNode = new TSTNode(word[0]);
+        }
+
+        TSTNode *currentNode = getOrCreateNode(word);
+
+        if (currentNode->data == NULL) {
+            if (freq == 0) {
+                freq = 1;
+            }
+            WordType *data = new WordType(word);
+            data->biEntry->id = this->id;
+            this->id += 1;
+            data->pos->put(key, freq);
+            currentNode->data = data;
+        } else {
+            currentNode->data->pos->put(key, freq);
+        }
     }
 }
 
-TSTNode* TernarySearchTrie::getOrCreateNode(std::string word) {
+TSTNode* TernarySearchTrie::getOrCreateNode(std::wstring word) {
 
     int charIndex = word.size() - 1;
     if (rootNode == NULL) {
@@ -93,7 +151,7 @@ TSTNode* TernarySearchTrie::getOrCreateNode(std::string word) {
     return NULL;
 }
 
-TSTNode* TernarySearchTrie::getNode(std::string word) {
+TSTNode* TernarySearchTrie::getNode(std::wstring word) {
     int charIndex = word.size() - 1;
     TSTNode *currentNode = rootNode;
 
@@ -115,4 +173,17 @@ TSTNode* TernarySearchTrie::getNode(std::string word) {
         }
     }
     return NULL;
+}
+
+std::wstring TernarySearchTrie::s2ws(const std::string& str) {
+    if (str.empty()) {
+        return L"";
+    }
+    unsigned len = str.size() + 1;
+    setlocale(LC_CTYPE, "en_US.UTF-8");
+    wchar_t *p = new wchar_t[len];
+    mbstowcs(p, str.c_str(), len);
+    std::wstring w_str(p);
+    delete [] p;
+    return w_str;
 }

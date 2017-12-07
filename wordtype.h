@@ -13,11 +13,11 @@
 
 class WordType {
 public:
-    WordType(std::string w);
+    WordType(std::wstring w);
     ~WordType();
-    std::string tostring();
+    std::wstring tostring();
 public:
-    std::string word;
+    std::wstring word;
     WordTypes *pos;
     BiMap *biEntry;
 };

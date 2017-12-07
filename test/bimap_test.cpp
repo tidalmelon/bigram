@@ -194,10 +194,10 @@ int main() {
     freq = m.getfreq(15);
     std::cout << "15:" << freq << std::endl;
 
-    std::string line = m.tostring();
+    std::wstring line = m.tostring();
     std::cout << "==============" << std::endl;
 
-    std::cout << line << std::endl;
+    std::wcout << line << std::endl;
 
     return 0;
 }

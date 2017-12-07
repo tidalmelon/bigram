@@ -2,7 +2,7 @@
 #include<map>
 #include "pos.h"
 
-std::string Pos::names[] = {"start","end","a","ad","ag","an","b","c","d","dg","e","f","g","h","i","j","k","l","m","n","ng","nr","ns","nt","nx","nz","o","p","q","r","s","t","tg","u","ud","ug","uj","ul","uv","uz","v","vd","vg","vn","w","x","y","z","unknow"};
+std::wstring Pos::names[] = {L"start",L"end",L"a",L"ad",L"ag",L"an",L"b",L"c",L"d",L"dg",L"e",L"f",L"g",L"h",L"i",L"j",L"k",L"l",L"m",L"n",L"ng",L"nr",L"ns",L"nt",L"nx",L"nz",L"o",L"p",L"q",L"r",L"s",L"t",L"tg",L"u",L"ud",L"ug",L"uj",L"ul",L"uv",L"uz",L"v",L"vd",L"vg",L"vn",L"w",L"x",L"y",L"z",L"unknow"};
 
 int Pos::start = 0;//开始
 int Pos::end = 1;//结束
@@ -54,70 +54,70 @@ int Pos::y = 46;//语气词
 int Pos::z = 47;//状态词
 int Pos::unknow = 48; //未知
 
-std::map<std::string, int> init() {
-    std::map<std::string, int> tmp;
+std::map<std::wstring, int> init() {
+    std::map<std::wstring, int> tmp;
 
-    tmp["start"] = Pos::start;//开始
-    tmp["end"] = Pos::end;//结束
-    tmp["a"] = Pos::a;//形容词
-    tmp["ad"] = Pos::ad;//副形词
-    tmp["ag"] = Pos::ag;//形语素
-    tmp["an"] = Pos::an;//名形
-    tmp["b"] = Pos::b;//区别词
-    tmp["c"] = Pos::c;//连词
-    tmp["d"] = Pos::d;//副词
-    tmp["dg"] = Pos::dg;//副语素
-    tmp["e"] = Pos::e;//叹
-    tmp["f"] = Pos::f;//方位词
-    tmp["g"] = Pos::g;//语素
-    tmp["h"] = Pos::h;//前接成分
-    tmp["i"] = Pos::i;//成语
-    tmp["j"] = Pos::j;//简称略语
-    tmp["k"] = Pos::k;//后接成分
-    tmp["l"] = Pos::l;//习用语
-    tmp["m"] = Pos::m;//数词
-    tmp["n"] = Pos::n;//名词
-    tmp["ng"] = Pos::ng;//名语素
-    tmp["nr"] = Pos::nr;//人名
-    tmp["ns"] = Pos::ns;//地名
-    tmp["nt"] = Pos::nt;//机构团体
-    tmp["nx"] = Pos::nx;//字母专名
-    tmp["nz"] = Pos::nz;//其他专名
-    tmp["o"] = Pos::o;//拟声词
-    tmp["p"] = Pos::p;//介词
-    tmp["q"] = Pos::q;//量词
-    tmp["r"] = Pos::r;//代词
-    tmp["s"] = Pos::s;//处所词
-    tmp["t"] = Pos::t;//时间词
-    tmp["tg"] = Pos::tg;//时语素
-    tmp["u"] = Pos::u;//助词
-    tmp["ud"] = Pos::ud;//结构助词
-    tmp["ug"] = Pos::ug;//时态助词
-    tmp["uj"] = Pos::uj;//结构助词的
-    tmp["ul"] = Pos::ul;//时态助词了
-    tmp["uv"] = Pos::uv;//结构助词地
-    tmp["uz"] = Pos::uz;//时态助词着
-    tmp["v"] = Pos::v;//动词
-    tmp["vd"] = Pos::vd;//副动词
-    tmp["vg"] = Pos::vg;//动语素
-    tmp["vn"] = Pos::vn;//名动词
-    tmp["w"] = Pos::w;//标点符号
-    tmp["x"] = Pos::x;//非语素字
-    tmp["y"] = Pos::y;//语气词
-    tmp["z"] = Pos::z;//状态词
-    tmp["unknow"] = Pos::unknow; //未知
+    tmp[L"start"] = Pos::start;//开始
+    tmp[L"end"] = Pos::end;//结束
+    tmp[L"a"] = Pos::a;//形容词
+    tmp[L"ad"] = Pos::ad;//副形词
+    tmp[L"ag"] = Pos::ag;//形语素
+    tmp[L"an"] = Pos::an;//名形
+    tmp[L"b"] = Pos::b;//区别词
+    tmp[L"c"] = Pos::c;//连词
+    tmp[L"d"] = Pos::d;//副词
+    tmp[L"dg"] = Pos::dg;//副语素
+    tmp[L"e"] = Pos::e;//叹
+    tmp[L"f"] = Pos::f;//方位词
+    tmp[L"g"] = Pos::g;//语素
+    tmp[L"h"] = Pos::h;//前接成分
+    tmp[L"i"] = Pos::i;//成语
+    tmp[L"j"] = Pos::j;//简称略语
+    tmp[L"k"] = Pos::k;//后接成分
+    tmp[L"l"] = Pos::l;//习用语
+    tmp[L"m"] = Pos::m;//数词
+    tmp[L"n"] = Pos::n;//名词
+    tmp[L"ng"] = Pos::ng;//名语素
+    tmp[L"nr"] = Pos::nr;//人名
+    tmp[L"ns"] = Pos::ns;//地名
+    tmp[L"nt"] = Pos::nt;//机构团体
+    tmp[L"nx"] = Pos::nx;//字母专名
+    tmp[L"nz"] = Pos::nz;//其他专名
+    tmp[L"o"] = Pos::o;//拟声词
+    tmp[L"p"] = Pos::p;//介词
+    tmp[L"q"] = Pos::q;//量词
+    tmp[L"r"] = Pos::r;//代词
+    tmp[L"s"] = Pos::s;//处所词
+    tmp[L"t"] = Pos::t;//时间词
+    tmp[L"tg"] = Pos::tg;//时语素
+    tmp[L"u"] = Pos::u;//助词
+    tmp[L"ud"] = Pos::ud;//结构助词
+    tmp[L"ug"] = Pos::ug;//时态助词
+    tmp[L"uj"] = Pos::uj;//结构助词的
+    tmp[L"ul"] = Pos::ul;//时态助词了
+    tmp[L"uv"] = Pos::uv;//结构助词地
+    tmp[L"uz"] = Pos::uz;//时态助词着
+    tmp[L"v"] = Pos::v;//动词
+    tmp[L"vd"] = Pos::vd;//副动词
+    tmp[L"vg"] = Pos::vg;//动语素
+    tmp[L"vn"] = Pos::vn;//名动词
+    tmp[L"w"] = Pos::w;//标点符号
+    tmp[L"x"] = Pos::x;//非语素字
+    tmp[L"y"] = Pos::y;//语气词
+    tmp[L"z"] = Pos::z;//状态词
+    tmp[L"unknow"] = Pos::unknow; //未知
     return tmp;
 }
 
-std::map<std::string, int> Pos::values(init());
+std::map<std::wstring, int> Pos::values(init());
 
 
-std::string Pos::getName(int pos) {
+std::wstring Pos::getName(int pos) {
     return names[pos];
 }
 
-int Pos::getValue(std::string key) {
-    std::map<std::string, int>::iterator it;
+int Pos::getValue(std::wstring key) {
+    std::map<std::wstring, int>::iterator it;
     it = values.find(key);
     if (it!= values.end()) {
         return it->second;

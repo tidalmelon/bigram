@@ -7,13 +7,18 @@ BiMap::BiMap(int len) {
     prevIds = new int[len];
     freqs = new int[len];
     this->len = len;
+    this->id = 0;
 }
 
 BiMap::~BiMap() {
-    delete [] prevIds;
-    prevIds = NULL;
-    delete [] freqs;
-    freqs = NULL;
+    if (prevIds != NULL) {
+        delete [] prevIds;
+        prevIds = NULL;
+    }
+    if (freqs != NULL) {
+        delete [] freqs;
+        freqs = NULL;
+    }
 }
 
 void BiMap::put(int prevId, int freq) {
@@ -119,8 +124,8 @@ void BiMap::print() {
     std::cout << std::endl;
 }
 
-std::string BiMap::tostring() {
-    std::stringstream ss;
+std::wstring BiMap::tostring() {
+    std::wstringstream ss;
     ss << "BigramMap@";
     for (size_t i=0; i<this->len; i++) {
         ss << "[" << prevIds[i] << ":" << freqs[i] << "]"; 

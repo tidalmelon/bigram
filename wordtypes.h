@@ -20,7 +20,7 @@ public:
 
     void print();
 
-    std::string tostring(); 
+    std::wstring tostring(); 
 
 public:
     int *keys;

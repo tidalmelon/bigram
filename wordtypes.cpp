@@ -52,8 +52,8 @@ void WordTypes::print() {
     std::cout << std::endl;
 }
 
-std::string WordTypes::tostring() {
-    std::stringstream ss;
+std::wstring WordTypes::tostring() {
+    std::wstringstream ss;
     ss << "WordId:Freq";
     for (size_t i=0; i<this->len_arr; i++) {
         ss << "[" << keys[i] << ":" << vals[i] << "]"; 

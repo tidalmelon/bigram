@@ -176,23 +176,22 @@
 int main() {
 
     for (int i=0; i<49; i++) {
-        std::cout << Pos::names[i] << std::endl;
+        std::wcout << Pos::names[i] << std::endl;
     }
 
     Pos p;
 
-    std::string pos = p.getName(1);
-    std::cout << pos << std::endl;
+    std::wstring pos = p.getName(1);
+    std::wcout << pos << std::endl;
 
-    std::map<std::string, int>::iterator iter;
+    std::map<std::wstring, int>::iterator iter;
     for (iter=Pos::values.begin(); iter != Pos::values.end(); iter++) {
-        std::cout << "key:" << iter->first << " value: " << iter->second << std::endl;
+        std::wcout << "key:" << iter->first << " value: " << iter->second << std::endl;
     }
 
-    std::cout << "-----------find by key----------" << std::endl;
+    std::wcout << "-----------find by key----------" << std::endl;
 
-    std::cout << Pos::getValue("vn") << std::endl;
-
+    std::wcout << Pos::getValue(L"vn") << std::endl;
 
     return 0;
 }

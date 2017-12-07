@@ -9,12 +9,16 @@
 #define _TST_H
 
 #include<string>
+#include "wordtype.h"
 
 class TSTNode {
     public:
-        char splitChar;
-        std::string data;
-        TSTNode(char key);
+        wchar_t splitChar;
+        //std::string data;
+        //std::wstring data;
+        WordType *data;
+        TSTNode(wchar_t key);
+        ~TSTNode();
 
         TSTNode *loNode;
         TSTNode *eqNode;
@@ -26,10 +30,19 @@ class TernarySearchTrie {
         TSTNode *rootNode;
 
         TernarySearchTrie();
+        ~TernarySearchTrie();
 
         void loadBaseDict(char fname[]);
-        TSTNode* getOrCreateNode(std::string word);
-        TSTNode* getNode(std::string word);
+        TSTNode* getOrCreateNode(std::wstring word);
+        TSTNode* getNode(std::wstring word);
+    private:
+        std::wstring s2ws(const std::string& str);
+
+    private:
+        double n; // 词典中词的总频率
+        int id; // 存储每个词的ID
+        int nodeId; //节点编号
+
 
 };
 

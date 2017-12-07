@@ -84,10 +84,10 @@ int main() {
 
     wts.print();
 
-    std::string line = wts.tostring();
+    std::wstring line = wts.tostring();
 
     std::cout << "==============" << std::endl;
-    std::cout << line << std::endl;
+    std::wcout << line << std::endl;
 
 
 

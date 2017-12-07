@@ -12,7 +12,7 @@
 #include "wordtype.h"
 
 
-WordType::WordType(std::string w) {
+WordType::WordType(std::wstring w) {
     this->word = w;
     this->pos = new WordTypes(0);
     this->biEntry = new BiMap(0);
@@ -28,9 +28,9 @@ WordType::~WordType() {
     }
 }
 
-std::string WordType::tostring() {
-    std::stringstream ss;
+std::wstring WordType::tostring() {
+    std::wstringstream ss;
     ss << word << ":pos" << this->pos->tostring();
-    ss << " BigramMap:" << this->biEntry->tostring();
+    ss << L" BigramMap:" << this->biEntry->tostring();
     return ss.str();
 }

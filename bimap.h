@@ -15,7 +15,9 @@ public:
     void put(int prevId, int freq);
     int getfreq(int prevId); 
     void print();
-    std::string tostring();
+    std::wstring tostring();
+public:
+    int id; //词本身的id
 
 private:
     size_t index(int arr[], int val, size_t left, size_t right);
