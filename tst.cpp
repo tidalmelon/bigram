@@ -162,7 +162,6 @@ void TernarySearchTrie::loadBigramDict(char fname[]) {
         }
 
         int id = prefixNode->data->biEntry->id; /*前缀单词的Id */
-        
         suffixNode->data->biEntry->put(id, freq);
     }
 }
@@ -230,6 +229,43 @@ TSTNode* TernarySearchTrie::getNode(std::wstring word) {
     return NULL;
 }
 
+void TernarySearchTrie::matchAll(std::wstring sentence, int offset, std::vector<WordType*> ret) {
+    ret.clear();
+    if (sentence.empty() || rootNode == NULL) {
+        return;
+    }
+
+    TSTNode *currentNode = rootNode;
+    int charIndex = offset;
+    while (true) {
+        if (currentNode == NULL) {
+            if (ret.size() == 0) {
+                ret.push_back(new WordType(sentence.substr(offset, offset+1), true));
+                return;
+            }
+        }
+        int compa = sentence.at(charIndex) - currentNode->splitChar;
+        if (compa == 0) {
+            if (currentNode->data != NULL) {
+                ret.push_back(currentNode->data);
+            }
+
+            if (charIndex <= 0) {
+                if (ret.size() == 0) {
+                    ret.push_back(new WordType(sentence.substr(offset, offset+1), true));
+                    return;
+                }
+            }
+            charIndex --;
+            currentNode = currentNode->eqNode;
+        } else if (compa < 0) {
+            currentNode = currentNode->loNode;
+        } else {
+            currentNode = currentNode->hiNode;
+        }
+    }
+}
+
 std::wstring TernarySearchTrie::s2ws(const std::string& str) {
     if (str.empty()) {
         return L"";
@@ -242,3 +278,4 @@ std::wstring TernarySearchTrie::s2ws(const std::string& str) {
     delete [] p;
     return w_str;
 }
+

@@ -21,12 +21,13 @@ public:
 
 private:
     int index(int prevId);
+    void grow();
 
 private:
     int *prevIds;
     int *freqs;
 
-    size_t len;
+    int len;
 
 };
 

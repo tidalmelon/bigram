@@ -14,12 +14,15 @@
 class WordType {
 public:
     WordType(std::wstring w);
+    WordType(std::wstring w, bool del);
     ~WordType();
     std::wstring tostring();
 public:
     std::wstring word;
     WordTypes *pos;
     BiMap *biEntry;
+
+    bool del;
 };
 
 #endif

@@ -16,9 +16,9 @@ int main() {
     char fname1[] = "../dic/BigramDict_u.txt";
     t.loadBigramDict(fname1);
 
-    //TSTNode *nr = t.getNode(L"实验");
-    //setlocale(LC_CTYPE, "en_US.UTF-8");
-    //wcout << nr->data->tostring() << endl;
+    TSTNode *nr = t.getNode(L"实验");
+    setlocale(LC_CTYPE, "en_US.UTF-8");
+    wcout << nr->data->tostring() << endl;
 
     /* cat ../dic/BigramDict_utf8.txt | grep @实验 | wc -l  48 */
 
