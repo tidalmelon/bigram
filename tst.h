@@ -36,7 +36,7 @@ class TernarySearchTrie {
         void loadBigramDict(char fname[]);
         TSTNode* getOrCreateNode(std::wstring word);
         TSTNode* getNode(std::wstring word);
-        void matchAll(std::wstring sentence, int offset, std::vector<WordType*> ret);
+        void matchAll(std::wstring sentence, int offset, std::vector<WordType*> *ret);
     private:
         std::wstring s2ws(const std::string& str);
 

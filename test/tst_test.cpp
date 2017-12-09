@@ -1,4 +1,7 @@
 #include<iostream>
+#include<vector>
+
+#include "../wordtype.h"
 #include "../tst.h"
 using namespace std;
 
@@ -16,9 +19,21 @@ int main() {
     char fname1[] = "../dic/BigramDict_u.txt";
     t.loadBigramDict(fname1);
 
-    TSTNode *nr = t.getNode(L"实验");
+    //TSTNode *nr = t.getNode(L"实验");
+    //setlocale(LC_CTYPE, "en_US.UTF-8");
+    //wcout << nr->data->tostring() << endl;
+
     setlocale(LC_CTYPE, "en_US.UTF-8");
-    wcout << nr->data->tostring() << endl;
+    std::wstring sen = L"产品和服务";
+    std::vector<WordType*> ret;
+    t.matchAll(sen, 0, &ret);
+    std::wcout << "size:" <<  ret.size() << std::endl;
+    std::vector<WordType*>::iterator iter;
+    for (iter=ret.begin(); iter!=ret.end(); iter++) {
+        std::wcout << (*iter)->tostring() << std::endl;
+    }
+
+
 
     /* cat ../dic/BigramDict_utf8.txt | grep @实验 | wc -l  48 */
 

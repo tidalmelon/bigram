@@ -229,8 +229,8 @@ TSTNode* TernarySearchTrie::getNode(std::wstring word) {
     return NULL;
 }
 
-void TernarySearchTrie::matchAll(std::wstring sentence, int offset, std::vector<WordType*> ret) {
-    ret.clear();
+void TernarySearchTrie::matchAll(std::wstring sentence, int offset, std::vector<WordType*> *ret) {
+    ret->clear();
     if (sentence.empty() || rootNode == NULL) {
         return;
     }
@@ -239,22 +239,23 @@ void TernarySearchTrie::matchAll(std::wstring sentence, int offset, std::vector<
     int charIndex = offset;
     while (true) {
         if (currentNode == NULL) {
-            if (ret.size() == 0) {
-                ret.push_back(new WordType(sentence.substr(offset, offset+1), true));
+            if (ret->size() == 0) {
+                ret->push_back(new WordType(sentence.substr(offset, 1), true));
                 return;
             }
         }
+        std::wcout << "charIdx:" << charIndex << " word:" << sentence.at(charIndex) << " :" << currentNode->splitChar << std::endl;
         int compa = sentence.at(charIndex) - currentNode->splitChar;
         if (compa == 0) {
             if (currentNode->data != NULL) {
-                ret.push_back(currentNode->data);
+                ret->push_back(currentNode->data);
             }
 
             if (charIndex <= 0) {
-                if (ret.size() == 0) {
-                    ret.push_back(new WordType(sentence.substr(offset, offset+1), true));
-                    return;
+                if (ret->size() == 0) {
+                    ret->push_back(new WordType(sentence.substr(offset, 1), true));
                 }
+                return;
             }
             charIndex --;
             currentNode = currentNode->eqNode;
