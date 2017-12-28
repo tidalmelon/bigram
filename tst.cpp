@@ -240,9 +240,10 @@ void TernarySearchTrie::matchAll(std::wstring sentence, int offset, std::vector<
     while (true) {
         if (currentNode == NULL) {
             if (ret->size() == 0) {
+                /* 内存泄漏，但却检测不出来，*/
                 ret->push_back(new WordType(sentence.substr(offset, 1), true));
-                return;
             }
+            return;
         }
         std::wcout << "charIdx:" << charIndex << " word:" << sentence.at(charIndex) << " :" << currentNode->splitChar << std::endl;
         int compa = sentence.at(charIndex) - currentNode->splitChar;

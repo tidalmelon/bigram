@@ -10,6 +10,9 @@ public:
     void split(std::wstring sentence);
 private:
     TernarySearchTrie *dict;
+
+private:
+    int *prevNode;
 };
 
 

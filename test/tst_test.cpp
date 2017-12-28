@@ -26,11 +26,18 @@ int main() {
     setlocale(LC_CTYPE, "en_US.UTF-8");
     std::wstring sen = L"产品和服务";
     std::vector<WordType*> ret;
-    t.matchAll(sen, 0, &ret);
-    std::wcout << "size:" <<  ret.size() << std::endl;
-    std::vector<WordType*>::iterator iter;
-    for (iter=ret.begin(); iter!=ret.end(); iter++) {
-        std::wcout << (*iter)->tostring() << std::endl;
+    int len = sen.size() + 1;
+
+    for (int i=1; i<len; i++) {
+
+        t.matchAll(sen, i-1, &ret);
+
+        std::wcout << "size:" <<  ret.size() << std::endl;
+        std::vector<WordType*>::iterator iter;
+        for (iter=ret.begin(); iter!=ret.end(); iter++) {
+            std::wcout << i << " : " << (*iter)->tostring() << std::endl;
+        }
+        std::wcout << "------------------" << std::endl;
     }
 
 
