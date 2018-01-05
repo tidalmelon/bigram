@@ -108,9 +108,9 @@ void Ngram::split(std::wstring sentence) {
 
     std::deque<WordToken*>::iterator it;
     for (it=tokens.begin(); it != tokens.end(); it++) {
-        std::wcout << "#####################" << std::endl;
         std::wcout << (*it)->tostring() << std::endl;
     }
+    std::wcout << "#####################" << std::endl;
 
 }
 
