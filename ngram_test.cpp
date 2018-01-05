@@ -129,7 +129,6 @@ private:
 int main() {
     setlocale(LC_CTYPE, "en_US.UTF-8");
     Ngram nm;
-    //nm.split(L"产品和服务");
-    nm.split(L"有意见分歧");
+    nm.split(L"产品和服务");
     return 0;
 }
