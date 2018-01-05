@@ -60,7 +60,7 @@ void WordTypes::print() {
 
 std::wstring WordTypes::tostring() {
     std::wstringstream ss;
-    ss << " WordId:Freq";
+    ss << " pos:freq";
     for (size_t i=0; i<this->len_arr; i++) {
         ss << "[" << keys[i] << ":" << vals[i] << "]"; 
     }

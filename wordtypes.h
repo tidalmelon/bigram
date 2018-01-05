@@ -24,9 +24,9 @@ public:
     std::wstring tostring(); 
 
 public:
-    int *keys;
-    int *vals;
-    int  total;
+    int *keys; //词性
+    int *vals; //词性频率
+    int  total; //词性的总频率(词的总频率)
 
 private:
     size_t len_arr;

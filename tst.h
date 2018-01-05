@@ -9,6 +9,7 @@
 #define _TST_H
 
 #include<string>
+#include<vector>
 #include "wordtype.h"
 
 class TSTNode {
