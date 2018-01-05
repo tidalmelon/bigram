@@ -245,7 +245,7 @@ void TernarySearchTrie::matchAll(std::wstring sentence, int offset, std::vector<
             }
             return;
         }
-        std::wcout << "charIdx:" << charIndex << " word:" << sentence.at(charIndex) << " :" << currentNode->splitChar << std::endl;
+        //std::wcout << "charIdx:" << charIndex << " word:" << sentence.at(charIndex) << " :" << currentNode->splitChar << std::endl;
         int compa = sentence.at(charIndex) - currentNode->splitChar;
         if (compa == 0) {
             if (currentNode->data != NULL) {

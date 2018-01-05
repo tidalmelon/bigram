@@ -10,6 +10,7 @@
 #include "wordtypes.h"
 #include "bimap.h"
 #include "wordtype.h"
+//#include "pos.h"
 
 
 WordType::WordType(std::wstring w) {
@@ -29,6 +30,13 @@ WordType::WordType(std::wstring w, bool del) {
     this->del = true;
 }
 
+WordType::WordType(std::wstring w, WordTypes* types, BiMap* b) {
+    this->word = w;
+    this->pos = types;
+    this->biEntry = b;
+    this->del = true;
+}
+
 WordType::~WordType() {
     if (pos != NULL) {
         delete pos;
@@ -38,9 +46,20 @@ WordType::~WordType() {
     }
 }
 
+//WordType* WordType::GetStartWord() {
+//    WordTypes* types = new WordTypes(1);
+//    types->insert(0, Pos::start, 1000);
+//    WordType* start = new WordType(L"start", types, NULL);
+//    return start;
+//}
+
 std::wstring WordType::tostring() {
     std::wstringstream ss;
-    ss << word << ":pos" << this->pos->tostring();
+    ss << this->word << ":pos" << this->pos->tostring();
+    if (this->biEntry == NULL) {
+        ss << L" BigramMap:NULL";
+        return ss.str();
+    } 
     ss << L" BigramMap:" << this->biEntry->tostring();
     return ss.str();
 }

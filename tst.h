@@ -40,7 +40,7 @@ class TernarySearchTrie {
     private:
         std::wstring s2ws(const std::string& str);
 
-    private:
+    public:
         double n; // 词典中词的总频率
         int id; // 存储每个词的ID
         int nodeId; //节点编号

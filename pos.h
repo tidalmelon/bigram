@@ -5,6 +5,8 @@
 #ifndef _POS_H
 #define _POS_H
 
+#include<map>
+
 class Pos {
 public:
     std::wstring getName(int pos);

@@ -15,6 +15,7 @@ public:
     ~WordTypes();
 
     void put(int key, int val);
+    void insert(int i, int key, int val);
 
     void grow();
 

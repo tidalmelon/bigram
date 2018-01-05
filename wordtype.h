@@ -10,13 +10,17 @@
 #include<string>
 #include "wordtypes.h"
 #include "bimap.h"
+#include "pos.h"
 
 class WordType {
 public:
     WordType(std::wstring w);
     WordType(std::wstring w, bool del);
+    WordType(std::wstring w, WordTypes* types, BiMap* b);
     ~WordType();
     std::wstring tostring();
+
+    static WordType* GetStartWord();
 public:
     std::wstring word;
     WordTypes *pos;

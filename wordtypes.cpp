@@ -24,6 +24,12 @@ void WordTypes::put(int key, int val) {
     this->vals[len_arr-1] = val;
 }
 
+void WordTypes::insert(int i, int key, int val) {
+    this->keys[i] = key;
+    this->vals[i] = val;
+}
+
+
 void WordTypes::grow() {
     int *keys_ = new int[this->len_arr + 1];
     int *vals_ = new int[this->len_arr + 1];
@@ -54,7 +60,7 @@ void WordTypes::print() {
 
 std::wstring WordTypes::tostring() {
     std::wstringstream ss;
-    ss << "WordId:Freq";
+    ss << " WordId:Freq";
     for (size_t i=0; i<this->len_arr; i++) {
         ss << "[" << keys[i] << ":" << vals[i] << "]"; 
     }
