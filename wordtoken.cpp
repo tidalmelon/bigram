@@ -14,9 +14,6 @@ WordToken::WordToken(int vertexfrom, int vertexto, std::wstring word, WordTypes*
     this->end = vertexto;
     this->termText = word;
     this->data = d;
-    if (d != NULL) {
-        this->cost = d->total;
-    }
 }
 WordToken::~WordToken() {
     if (data != NULL) {
@@ -26,7 +23,9 @@ WordToken::~WordToken() {
 
 std::wstring WordToken::tostring() {
     std::wstringstream ss;
-    ss << "text:" << this->termText << " start:" << this->start << " end:" << this->end;
+    ss << "text:" << this->termText;
+    ss << " [pos:" << this->pn << ", " << this->p << "]";
+    ss << " [start:" << this->start << ", end:" << this->end << "]";
     ss << " data:" << this->data->tostring();
     return ss.str();
 }

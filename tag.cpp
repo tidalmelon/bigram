@@ -56,7 +56,7 @@ public:
         return log(double(transFreq[curState][toTranState] + 1) / (typeFreq[curState] + 49));
     }
 
-    int* hmm(std::deque<WordToken*> ret) {
+    void hmm(std::deque<WordToken*> ret) {
         WordTypes* starttypes = new WordTypes(1);
         starttypes->insert(0, Pos::start, 1);
         WordToken* starttoken = new WordToken(-1, 0, L"Start", starttypes);
@@ -124,11 +124,12 @@ public:
         }
         int *resultTag = new int[stagelength-2]; 
         for (int i=1; i< (stagelength-1); i++) {
-            std::wcout << "[" << bestTag[i] << " : " << Pos::names[bestTag[i]] << "]";
+            //std::wcout << "[" << bestTag[i] << " : " << Pos::names[bestTag[i]] << "]";
+            ret.at(i)->p = bestTag[i];
+            ret.at(i)->pn = Pos::names[bestTag[i]];
         }
-        std::wcout << std::endl;
+        //std::wcout << std::endl;
         
-        return resultTag;
     }
 
 

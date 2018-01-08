@@ -110,15 +110,14 @@ void Ngram::split(std::wstring sentence) {
         tokens.push_front(token);
     }
 
+    //词性标注
+    this->tagger->hmm(tokens);
+
     std::deque<WordToken*>::iterator it;
     for (it=tokens.begin(); it != tokens.end(); it++) {
         std::wcout << (*it)->tostring() << std::endl;
     }
-    std::wcout << L"---------词性标注结果------" << std::endl;
-
-    this->tagger->hmm(tokens);
     std::wcout << L"#####################" << std::endl;
-
 
 }
 

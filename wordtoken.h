@@ -15,8 +15,8 @@ public:
     WordTypes* data;
     int start;
     int end;
-    long cost;
-    long cde;
+    int p;
+    std::wstring pn;
 };
 
 #endif
