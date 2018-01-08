@@ -116,11 +116,7 @@ void Ngram::split(std::wstring sentence) {
     }
     std::wcout << L"---------词性标注结果------" << std::endl;
 
-    int* arr = this->tagger->hmm(tokens);
-    int sl = sizeof(arr) / sizeof(arr[0]);
-    for (int i=0; i<sl; i++) {
-        std::cout << i << L":" << arr[i] << std::endl;
-    }
+    this->tagger->hmm(tokens);
     std::wcout << L"#####################" << std::endl;
 
 
