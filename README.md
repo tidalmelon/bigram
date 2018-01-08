@@ -47,3 +47,6 @@ text:一个 [pos:m, 18] [start:5, end:7] data: pos:freq[18:1889]
 text:程序 [pos:n, 19] [start:7, end:9] data: pos:freq[21:1][19:46]
 #####################
 ```
+
+##todo:  
+    python 安装包
