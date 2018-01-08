@@ -28,7 +28,7 @@ public:
     int *vals; //词性频率
     int  total; //词性的总频率(词的总频率)
 
-private:
+public:
     size_t len_arr;
 
 };

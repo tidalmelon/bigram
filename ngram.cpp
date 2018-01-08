@@ -21,6 +21,10 @@ Ngram::Ngram() {
     char fname1[] = "../dic/BigramDict_u.txt";
     this->dict->loadBigramDict(fname1);
 
+    this->tagger = new Tagger();
+    char fname2[] = "../dic/TransProbility_u.txt";
+    this->tagger->loadModel(fname2);
+
     this->lambda1 = 0.3;
     this->lambda2 = 0.7;
 }
@@ -110,7 +114,15 @@ void Ngram::split(std::wstring sentence) {
     for (it=tokens.begin(); it != tokens.end(); it++) {
         std::wcout << (*it)->tostring() << std::endl;
     }
-    std::wcout << "#####################" << std::endl;
+    std::wcout << L"---------词性标注结果------" << std::endl;
+
+    int* arr = this->tagger->hmm(tokens);
+    int sl = sizeof(arr) / sizeof(arr[0]);
+    for (int i=0; i<sl; i++) {
+        std::cout << i << L":" << arr[i] << std::endl;
+    }
+    std::wcout << L"#####################" << std::endl;
+
 
 }
 

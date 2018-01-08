@@ -5,6 +5,7 @@
 
 #include "wordtype.h"
 #include "tst.h"
+#include "tag.cpp"
 
 class Ngram {
 public:
@@ -17,6 +18,8 @@ private:
 
 private:
     TernarySearchTrie *dict;
+    Tagger *tagger;
+
     size_t _len;
 
     double lambda1;

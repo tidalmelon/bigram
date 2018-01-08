@@ -66,7 +66,6 @@ TernarySearchTrie::~TernarySearchTrie() {
 
 void TernarySearchTrie::loadBaseDict(char fname[]) {
     // 词典结构： 词 词性 频率 (是以某个词的某个词性为粒度, 即一个词会出现在多行，但词性不同)
-    //char encoding[] = "gb18030";
     std::ifstream in(fname);
     std::string line;
     while (getline(in, line)) {
