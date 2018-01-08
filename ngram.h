@@ -5,7 +5,7 @@
 
 #include "wordtype.h"
 #include "tst.h"
-#include "tag.cpp"
+#include "tag.h"
 
 class Ngram {
 public:

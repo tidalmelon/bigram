@@ -15,14 +15,14 @@
 
 Ngram::Ngram() {
     this->dict = new TernarySearchTrie();
-    char fname[] = "../dic/coreDict_utf8.txt";
+    char fname[] = "../dic/coredict.txt";
     this->dict->loadBaseDict(fname);
 
-    char fname1[] = "../dic/BigramDict_u.txt";
+    char fname1[] = "../dic/bigramdict_u.txt";
     this->dict->loadBigramDict(fname1);
 
     this->tagger = new Tagger();
-    char fname2[] = "../dic/TransProbility_u.txt";
+    char fname2[] = "../dic/transprobility.txt";
     this->tagger->loadModel(fname2);
 
     this->lambda1 = 0.3;
