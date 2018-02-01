@@ -2,6 +2,7 @@
 #include<cstring>
 #include<math.h>
 #include<iostream>
+#include<vector>
 #include<boost/algorithm/string/classification.hpp>
 #include<boost/algorithm/string/split.hpp>
 #include<boost/lexical_cast.hpp>

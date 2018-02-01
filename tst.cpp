@@ -82,7 +82,7 @@ void TernarySearchTrie::loadBaseDict(char fname[]) {
         std::string word_ = dest.at(0);
         std::string pos_ = dest[1];
         std::string freq_ = dest[2];
-        //std::cout << word << " pos:" << pos << " num:" << num << std::endl;
+        //std::cout << word_ << " pos:" << pos_ << " num:" << freq_ << std::endl;
         //
         std::wstring pos = s2ws(pos_);
         int key = Pos::getValue(pos);
